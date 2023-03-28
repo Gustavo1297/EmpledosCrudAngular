@@ -1,0 +1,94 @@
+<h2 class="text-center mt-5 m-auto">Empleados</h2>
+   <br>
+
+ <button type="button" class="btn btn-primary" (click)="ModalAdd()" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+  Agregar Empleado
+</button>
+<table class="table table-striped mt-5 m-auto">
+    <thead>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Correo</th>
+        <th>Fecha Ingreso</th>
+        <th>Estatus</th>
+        <th>Area</th>
+        <th>Acciones</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of empleadosList">
+            <td>{{item.nombre}}</td>
+            <td>{{item.apellido}}</td>
+            <td>{{item.correo}}</td>
+            <td>{{item.fecha_Ingreso | date : "dd/MM/yyyy"}}</td>
+            <td>
+                <span
+                  *ngIf="item.estatus"
+                  class="badge bg-success"
+                >
+                  Activo
+                </span>
+
+                <span
+                  *ngIf="!item.estatus"
+                  class="badge bg-danger"
+                >
+                  Inactivo
+                </span>
+              </td>
+            <td>{{item.area}}</td>
+            <td>
+                <button type="button" class="badge btn btn-primary" (click)="ModalEdit(item)" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Editar</button>
+                <button type="button" class="badge btn btn-danger ms-1" (click)="ModalDelete(item)" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Eliminar</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div *ngIf="showModal">
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">{{modalTitle}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" 
+        aria-label="Close" (click)="modalClose()" id="add-edit-close-modal"></button>
+      </div>
+      <div class="modal-body">
+        <div *ngIf="!showModalDelete">
+          <app-add-edit-empleados [empleadosList]=empleados [areasList]="areasList"></app-add-edit-empleados>
+        </div>
+        <div *ngIf="showModalDelete">
+          <span class="text-center">¿Desea eliminar a <b>{{empleados.correo}}</b>?</span>
+          <br>
+          <div class="centerBtn .mt-2">
+            <button type="button" (click)="deleteEmpleados()" class="btn btn-primary">Si</button>
+            <button type="button" (click)="modalClose()" data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="btn btn-danger ms-1">No</button>
+          </div>
+          
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!--Alerts-->
+<div class="alert alert-success mb-2" role="alert" id="add-success-alert">
+  Empleado agregado correctamente!
+</div>
+<div class="alert alert-warning mb-2" role="alert" id="add-warning-alert">
+  Hubo un error al intentar agregar un empleado!
+</div>
+<div class="alert alert-success mb-2" role="alert" id="update-success-alert">
+  Empleado actualizado correctamente!
+</div>
+<div class="alert alert-warning mb-2" role="alert" id="update-warning-alert">
+  Hubo un error al intentar actulizar un empleado!
+</div>
+<div class="alert alert-success mb-2" role="alert" id="delete-success-alert">
+  Empleado eliminado correctamente!
+</div>
+<div class="alert alert-warning mb-2" role="alert" id="delete-warning-alert">
+  Hubo un error al intentar actulizar un empleado!
+</div>

@@ -1,0 +1,26 @@
+<div>
+  <div class="mb-3">
+    <label for="nombre" class="form-label">Nombre</label>
+    <input type="text" class="form-control" pattern="^[a-zA-Z ]{2,254}$" id="nombre" [(ngModel)]="nombre">
+    <p class="text-danger mt-1" id="nombreInput">Nombre invalido!</p>
+  </div>
+  <div class="mb-3">
+    <label for="apellido" class="form-label">Apellido</label>
+    <input type="text" class="form-control" id="apellido" [(ngModel)]="apellido">
+    <p class="text-danger mt-1" id="apellidoInput">Apellido invalido!</p>
+  </div>
+  <div class="mb-3">
+    <label for="correo" class="form-label">Correo</label>
+    <input type="text" class="form-control" id="correo" [(ngModel)]="correo">
+    <p class="text-danger mt-1" id="correoInput">Correo invalido!</p>
+  </div>
+  <div class="mb-3">
+    <label for="area" class="form-label">Area</label>
+    <select name="area" id="area" class="form-select" aria-label="Seleccione un area" [(ngModel)]="idArea">
+      <option *ngFor="let item of areasList" [value]="item.idArea">{{item.area}}</option>
+    </select>
+  </div>
+  
+  <button (click)="addEmpleado()" *ngIf="showBtn" class="btn btn-primary">Aceptar</button>
+  <button (click)="updateEmpleado()" *ngIf="!showBtn" class="btn btn-primary">Actualizar</button>
+</div>

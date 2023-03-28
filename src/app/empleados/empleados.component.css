@@ -1,0 +1,18 @@
+.centerElement {
+    margin: 5rem;
+}
+
+.centerBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#add-success-alert,
+#add-warning-alert,
+#update-success-alert,
+#update-warning-alert,
+#delete-success-alert,
+#delete-warning-alert {
+    display: none;
+}
