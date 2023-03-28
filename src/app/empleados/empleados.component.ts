@@ -58,6 +58,7 @@ export class EmpleadosComponent {
 
   modalClose() {
     this.showModal = false;
+    this.showModalDelete=false;
     this.getEmpleados();
   }
 
