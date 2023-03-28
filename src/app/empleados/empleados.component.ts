@@ -36,6 +36,9 @@ export class EmpleadosComponent {
     let closeModal = document.getElementById('add-edit-close-modal');
     this.service.deleteEmpleados(this.empleados).subscribe((res) => {
       if (res.code == 200) {
+        console.log(this.showModal);
+        
+        this.showModalDelete=false;
         let showAddSuccess = document.getElementById('delete-success-alert');
         showAddSuccess!.style.display = 'block';
         closeModal?.click();
